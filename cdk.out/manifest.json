@@ -1,0 +1,95 @@
+{
+  "version": "40.0.0",
+  "artifacts": {
+    "ArtRssShopNestJsLambdaStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ArtRssShopNestJsLambdaStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ArtRssShopNestJsLambdaStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://050451385765/unknown-region",
+      "properties": {
+        "templateFile": "ArtRssShopNestJsLambdaStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::050451385765:role/cdk-hnb659fds-deploy-role-050451385765-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::050451385765:role/cdk-hnb659fds-cfn-exec-role-050451385765-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-050451385765-${AWS::Region}/501c729638de5d1599f62d6c0a431119ac6e92e9f55c898fc5f3071a1fb7e6d1.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ArtRssShopNestJsLambdaStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::050451385765:role/cdk-hnb659fds-lookup-role-050451385765-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ArtRssShopNestJsLambdaStack.assets"
+      ],
+      "metadata": {
+        "/ArtRssShopNestJsLambdaStack/ArtRssShopNestJsLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ArtRssShopNestJsLambdaServiceRole22D4783F"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/ArtRssShopNestJsLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ArtRssShopNestJsLambda19C90EC3"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/ArtRssShopNestJsLambdaName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ArtRssShopNestJsLambdaName"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/ArtRssShopNestJsLambdaArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ArtRssShopNestJsLambdaArn"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ArtRssShopNestJsLambdaStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ArtRssShopNestJsLambdaStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

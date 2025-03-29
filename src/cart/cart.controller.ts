@@ -12,11 +12,9 @@ import {
 } from '@nestjs/common';
 import { BasicAuthGuard } from '../auth';
 import { Order, OrderService } from '../order';
-import { AppRequest, getUserIdFromRequest } from '../shared';
+import { AppRequest, CartItem, CreateOrderDto, getUserIdFromRequest, PayloadItem } from '../shared';
 import { calculateCartTotal } from './models-rules';
 import { CartService } from './services';
-import { CartItem } from './models';
-import { CreateOrderDto, PutCartPayload } from 'src/order/type';
 
 @Controller('api/profile/cart')
 export class CartController {
@@ -41,7 +39,7 @@ export class CartController {
   @Put()
   updateUserCart(
     @Req() req: AppRequest,
-    @Body() body: PutCartPayload,
+    @Body() body: CartItem,
   ): CartItem[] {
     // TODO: validate body payload...
     const cart = this.cartService.updateByUserId(
@@ -67,7 +65,7 @@ export class CartController {
     const userId = getUserIdFromRequest(req);
     const cart = this.cartService.findByUserId(userId);
 
-    if (!(cart && cart.items.length)) {
+    if (!cart?.items.length) {
       throw new BadRequestException('Cart is empty');
     }
 

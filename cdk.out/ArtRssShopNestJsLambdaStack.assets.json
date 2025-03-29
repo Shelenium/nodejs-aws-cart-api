@@ -1,0 +1,32 @@
+{
+  "version": "40.0.0",
+  "files": {
+    "c4a18a4f951466a72c8e54782e5bf848cc32cc11240a673ebfe8e5eadab2a7ec": {
+      "source": {
+        "path": "asset.c4a18a4f951466a72c8e54782e5bf848cc32cc11240a673ebfe8e5eadab2a7ec",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "050451385765-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-050451385765-${AWS::Region}",
+          "objectKey": "c4a18a4f951466a72c8e54782e5bf848cc32cc11240a673ebfe8e5eadab2a7ec.zip",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::050451385765:role/cdk-hnb659fds-file-publishing-role-050451385765-${AWS::Region}"
+        }
+      }
+    },
+    "501c729638de5d1599f62d6c0a431119ac6e92e9f55c898fc5f3071a1fb7e6d1": {
+      "source": {
+        "path": "ArtRssShopNestJsLambdaStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "050451385765-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-050451385765-${AWS::Region}",
+          "objectKey": "501c729638de5d1599f62d6c0a431119ac6e92e9f55c898fc5f3071a1fb7e6d1.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::050451385765:role/cdk-hnb659fds-file-publishing-role-050451385765-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
