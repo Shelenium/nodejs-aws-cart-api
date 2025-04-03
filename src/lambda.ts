@@ -11,6 +11,7 @@ export const handler: Handler = async (
 ) => {
   if (!cachedHandler) {
     const app = await nestLambdaBootstrap();
+    app.enableCors();
     await app.init();
     const httpServer = app.getHttpAdapter().getInstance();
     cachedHandler = serverless(httpServer); // Wrap HTTP server as a Lambda handler

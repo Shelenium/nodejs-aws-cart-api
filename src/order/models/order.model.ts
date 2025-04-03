@@ -1,4 +1,5 @@
-import { Address, OrderItem, OrderStatus } from '../../shared';
+import { OrderStatus } from '../../entities';
+import { Address, OrderItem } from '../../shared';
 
 export interface Order {
   id?: string;
@@ -7,7 +8,7 @@ export interface Order {
   cartId: string;
   address: Address;
   statusHistory: Array<{
-    status: OrderStatus.Open;
+    status: OrderStatus.OPEN;
     timestamp: number;
     comment: string;
   }>;

@@ -28,7 +28,7 @@ export interface OrderItem {
 }
 
 export interface CreateOrderDto {
-  items: OrderItem[];
+  items: CartItem[];
   address: Address;
 };
 

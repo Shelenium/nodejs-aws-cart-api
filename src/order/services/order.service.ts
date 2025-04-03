@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 import { Order } from '../models';
-import { CreateOrderPayload, OrderStatus } from '../../shared';
+import { CreateOrderPayload } from '../../shared';
+import { OrderStatus } from '../../entities';
 
 @Injectable()
 export class OrderService {
@@ -23,7 +24,7 @@ export class OrderService {
       statusHistory: [
         {
           comment: '',
-          status: OrderStatus.Open,
+          status: OrderStatus.OPEN,
           timestamp: Date.now(),
         },
       ],

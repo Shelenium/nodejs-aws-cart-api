@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { Cart, CartStatuses } from '../models';
+import { Cart, CartStatus } from '../models';
 import { CartItem } from '../../shared';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CartService {
       user_id,
       created_at: timestamp,
       updated_at: timestamp,
-      status: CartStatuses.OPEN,
+      status: CartStatus.OPEN,
       items: [],
     };
 

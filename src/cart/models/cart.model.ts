@@ -1,8 +1,8 @@
 import { CartItem } from '../../shared';
 
-export enum CartStatuses {
+export enum CartStatus {
   OPEN = 'OPEN',
-  STATUS = 'STATUS',
+  ORDERED = 'ORDERED',
 }
 
 export type Cart = {
@@ -10,6 +10,6 @@ export type Cart = {
   user_id: string;
   created_at: number;
   updated_at: number;
-  status: CartStatuses;
+  status: CartStatus;
   items: CartItem[];
 };
