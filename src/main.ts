@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 
 import helmet from 'helmet';

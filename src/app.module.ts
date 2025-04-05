@@ -22,7 +22,12 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
+      autoLoadEntities: true,
+      extra: {
+        max: 10,
+        idleTimeoutMillis: 30000,
+      },
     }),
   ],
   controllers: [AppController],

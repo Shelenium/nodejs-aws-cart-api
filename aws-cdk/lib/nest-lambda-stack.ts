@@ -1,9 +1,31 @@
 import { Construct } from 'constructs';
-import { aws_lambda, CfnOutput, Duration, Stack, StackProps } from 'aws-cdk-lib';
+import { aws_ec2, aws_lambda, CfnOutput, Duration, Stack, StackProps } from 'aws-cdk-lib';
 
 export class NestJsLambdaStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
+
+    const vpc = aws_ec2.Vpc.fromLookup(this, 'ArtRssShopNestJsVpc', {
+      vpcId: process.env.VPC_ID,
+     });
+
+    const dbSecurityGroup = aws_ec2.SecurityGroup.fromSecurityGroupId(
+      this,
+      'ArtRssShopPostgresDbSecurityGroup',
+      process.env.DB_SECURITY_GROUP,
+    );
+
+    const lambdaSecurityGroup = new aws_ec2.SecurityGroup(this, 'ArtRssShopNestJsLambdaSecurityGroup', {
+      vpc,
+      allowAllOutbound: true,
+    });
+
+    dbSecurityGroup.addIngressRule(
+      lambdaSecurityGroup,
+      aws_ec2.Port.tcp(+process.env.DB_PORT || 5432),
+      'Allow ArtRssShopNestJsLambda to access PostgreSQL'
+    );
+
 
     const nestLambda = new aws_lambda.Function(this, 'ArtRssShopNestJsLambda', {
       runtime: aws_lambda.Runtime.NODEJS_20_X,
@@ -11,6 +33,11 @@ export class NestJsLambdaStack extends Stack {
       code: aws_lambda.Code.fromAsset('./dist'),
       memorySize: 512,
       timeout: Duration.seconds(30),
+      vpc,
+      securityGroups: [lambdaSecurityGroup],
+      vpcSubnets: {
+        subnetType: aws_ec2.SubnetType.PRIVATE_WITH_EGRESS,
+      },
       environment: {
         NODE_ENV: 'lambda',
         DB_HOST: process.env.DB_HOST,
