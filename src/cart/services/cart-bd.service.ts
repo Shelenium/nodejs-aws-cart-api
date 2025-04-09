@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CartEntity, CartItemEntity } from '../../entities';
+import { CartEntity, CartItemEntity, ProductEntity } from '../entities';
 import { CartStatus } from '../models';
-import { CartItem } from 'src/shared';
+import { CartItem, ProductItem } from '../../shared';
 
 @Injectable()
 export class CartDbService {
@@ -13,6 +13,9 @@ export class CartDbService {
 
     @InjectRepository(CartItemEntity)
     private readonly cartItemRepository: Repository<CartItemEntity>,
+
+    @InjectRepository(ProductEntity)
+    private readonly productRepository: Repository<ProductEntity>,
   ) {}
 
   async createCart(userId: string): Promise<CartEntity> {
@@ -43,7 +46,8 @@ export class CartDbService {
 
   async updateCartByUserId(user_id: string, cartItem: CartItem): Promise<CartEntity> {
     const cart: CartEntity = await this.findOrCreateByUserId(user_id);
-    await this.addOrUpdateCartItem(cart.id, cartItem.product.id, cartItem.count);
+    const product = await this.findOrCreateProduct(cartItem.product)
+    await this.addOrUpdateCartItem(cart.id, product.id, cartItem.count);
     return await this.findCartByUserId(user_id);
   }
 
@@ -66,6 +70,20 @@ export class CartDbService {
       });
       return await this.cartItemRepository.save(newItem);
     }
+  }
+
+  private async findOrCreateProduct(payload: ProductItem): Promise<ProductEntity> {
+    const foundedProduct = await this.productRepository.findOne({
+      where: { id: payload.id },
+    });
+
+    if (foundedProduct) {
+      return foundedProduct;
+    }
+
+    const newProduct = this.productRepository.create(payload);
+
+    return await this.productRepository.save(newProduct);
   }
 
   async updateOrderStatus(user_id: string, status: CartStatus): Promise<CartEntity> {

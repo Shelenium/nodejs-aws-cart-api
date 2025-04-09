@@ -1,16 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from '../models';
+import { Order, OrderStatus } from '../models';
 import { CreateOrderPayload } from '../../shared';
-import { CartEntity, OrderEntity, OrderStatus } from '../../entities';
+import { OrderEntity } from '../entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class OrderDbService {
   constructor(
-    @InjectRepository(CartEntity)
-    private readonly cartRepository: Repository<CartEntity>,
-
     @InjectRepository(OrderEntity)
     private readonly orderRepository: Repository<OrderEntity>,
   ) {}

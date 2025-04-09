@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { Order } from '../models';
+import { Order, OrderStatus } from '../models';
 import { CreateOrderPayload } from '../../shared';
-import { OrderStatus } from '../../entities';
 
 @Injectable()
 export class OrderService {

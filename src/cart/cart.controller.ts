@@ -10,9 +10,9 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { CartItemEntity, OrderEntity } from '../entities';
+import { CartItemEntity } from './entities';
 import { BasicAuthGuard } from '../auth';
-import { OrderDbService } from '../order';
+import { OrderDbService, OrderEntity } from '../order';
 import { AppRequest, CartItem, CreateOrderDto, getUserIdFromRequest } from '../shared';
 import { calculateCartTotal } from './models-rules';
 import { CartDbService } from './services';

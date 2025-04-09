@@ -36,8 +36,9 @@ export class NestJsLambdaStack extends Stack {
       vpc,
       securityGroups: [lambdaSecurityGroup],
       vpcSubnets: {
-        subnetType: aws_ec2.SubnetType.PRIVATE_WITH_EGRESS,
+        subnetType: aws_ec2.SubnetType.PUBLIC,
       },
+      allowPublicSubnet: true,
       environment: {
         NODE_ENV: 'lambda',
         DB_HOST: process.env.DB_HOST,
