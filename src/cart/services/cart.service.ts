@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { Cart, CartStatuses } from '../models';
-import { PutCartPayload } from 'src/order/type';
+import { Cart, CartStatus } from '../models';
+import { CartItem } from '../../shared';
 
 @Injectable()
 export class CartService {
@@ -14,12 +14,12 @@ export class CartService {
   createByUserId(user_id: string): Cart {
     const timestamp = Date.now();
 
-    const userCart = {
+    const userCart: Cart = {
       id: randomUUID(),
       user_id,
       created_at: timestamp,
       updated_at: timestamp,
-      status: CartStatuses.OPEN,
+      status: CartStatus.OPEN,
       items: [],
     };
 
@@ -29,7 +29,7 @@ export class CartService {
   }
 
   findOrCreateByUserId(userId: string): Cart {
-    const userCart = this.findByUserId(userId);
+    const userCart: Cart = this.findByUserId(userId);
 
     if (userCart) {
       return userCart;
@@ -38,8 +38,8 @@ export class CartService {
     return this.createByUserId(userId);
   }
 
-  updateByUserId(userId: string, payload: PutCartPayload): Cart {
-    const userCart = this.findOrCreateByUserId(userId);
+  updateByUserId(userId: string, payload: CartItem): Cart {
+    const userCart: Cart = this.findOrCreateByUserId(userId);
 
     const index = userCart.items.findIndex(
       ({ product }) => product.id === payload.product.id,
@@ -56,7 +56,7 @@ export class CartService {
     return userCart;
   }
 
-  removeByUserId(userId): void {
+  removeByUserId(userId: string): void {
     this.userCarts[userId] = null;
   }
 }

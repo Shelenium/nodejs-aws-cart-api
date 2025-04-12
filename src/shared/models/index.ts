@@ -1,7 +1,2 @@
-import { Request } from 'express';
-
-import { User } from '../../users';
-
-export interface AppRequest extends Request {
-  user?: User;
-}
+export * from './app-request.model';
+export * from './cart.model';

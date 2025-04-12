@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { Order } from '../models';
-import { CreateOrderPayload, OrderStatus } from '../type';
+import { Order, OrderStatus } from '../models';
+import { CreateOrderPayload } from '../../shared';
 
 @Injectable()
 export class OrderService {
   private orders: Record<string, Order> = {};
 
-  getAll() {
+  getAll(): Order[] {
     return Object.values(this.orders);
   }
 
@@ -15,7 +15,7 @@ export class OrderService {
     return this.orders[orderId];
   }
 
-  create(data: CreateOrderPayload) {
+  create(data: CreateOrderPayload): Order {
     const id = randomUUID() as string;
     const order: Order = {
       id,
@@ -23,7 +23,7 @@ export class OrderService {
       statusHistory: [
         {
           comment: '',
-          status: OrderStatus.Open,
+          status: OrderStatus.OPEN,
           timestamp: Date.now(),
         },
       ],
@@ -35,7 +35,7 @@ export class OrderService {
   }
 
   // TODO add  type
-  update(orderId: string, data: Order) {
+  update(orderId: string, data: Order): void {
     const order = this.findById(orderId);
 
     if (!order) {

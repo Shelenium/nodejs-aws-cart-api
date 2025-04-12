@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/services/users.service';
-import { User } from '../users/models';
+import { UsersService, User } from '../users';
 // import { contentSecurityPolicy } from 'helmet';
 type TokenResponse = {
   token_type: string;
