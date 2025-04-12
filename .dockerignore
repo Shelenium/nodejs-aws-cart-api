@@ -14,14 +14,6 @@ npm-debug.log*
 .git
 .gitignore
 
-# Ignore Docker-related artifacts
-Dockerfile
-
-# Ignore Docker-related artifacts
-# Explanation: These are only relevant during the build process and should not be part of the final image.
-Dockerfile
-.dockerignore
-
 # Ignore IDE-specific files and folders
 .vscode/
 .idea/
@@ -33,3 +25,7 @@ build/
 sql-scripts/
 test/
 
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
