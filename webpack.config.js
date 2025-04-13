@@ -5,7 +5,7 @@ module.exports = {
   target: 'node',
   mode: 'production',
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [

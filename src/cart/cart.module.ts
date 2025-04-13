@@ -13,6 +13,6 @@ import { CartEntity, CartItemEntity, ProductEntity } from './entities';
     forwardRef(() => OrderModule),
   ],
   providers: [CartService, CartDbService],
-  controllers: [CartController, CartDbService],
+  controllers: [CartController],
 })
 export class CartModule {}
