@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/lambda.ts',
+  entry: './src/main.ts',
   target: 'node',
   mode: 'production',
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'lambda.js',
+    filename: 'main.js',
     libraryTarget: 'commonjs2',
   },
 };
